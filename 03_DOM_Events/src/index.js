@@ -28,15 +28,16 @@ function renderFooter(bookStore) {
 //   <img src="https://images-na.ssl-images-amazon.com/images/I/51IKycqTPUL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg" alt="Eloquent JavaScript cover"/>
 // </li>
 // appends the li to the ul#book-list in the DOM
+
 function renderBook(book) {
-    
+  
   const li = document.createElement('li');
   li.className = 'list-li';
   
   const h3 = document.createElement('h3');
   h3.textContent = book.title;
   li.append(h3);
-
+  
   const pAuthor = document.createElement('p');
   pAuthor.textContent = book.author;
   li.append(pAuthor);
@@ -50,9 +51,10 @@ function renderBook(book) {
   img.alt = `${book.title} cover`;
   img.title = `${book.title} cover`;
   li.append(img);
-
+  
   const btn = document.createElement('button');
   btn.textContent = 'Delete';
+  btn.addEventListener('click', () => li.remove())
   li.append(btn);
 
   document.querySelector('#book-list').append(li);
@@ -67,3 +69,37 @@ renderHeader(bookStore);
 renderFooter(bookStore);
 bookStore.inventory.forEach(renderBook);
 
+
+
+const bookForm = document.querySelector('#book-form')
+const toggleFormButton = document.querySelector('#toggleForm')
+
+function toggleBookForm() {
+  const isHidden = bookForm.classList.toggle("collapsed")
+  if (isHidden) {
+    toggleFormButton.textContent = "New Book"
+  } else {
+    toggleFormButton.textContent = "Hide Book Form"
+  }
+}
+
+toggleFormButton.addEventListener('click', toggleBookForm)
+
+
+function handleSubmit(e) {
+  e.preventDefault()
+  const newBook = {
+    title: bookForm.title.value,
+    author: bookForm.author.value,
+    price: bookForm.price.value,
+    imageUrl: bookForm.imageUrl.value,
+    inventory: bookForm.inventory.value
+  }
+  renderBook(newBook)
+  e.target.reset()
+  toggleBookForm()
+}
+
+bookForm.addEventListener('submit', handleSubmit)
+
+toggleBookForm()

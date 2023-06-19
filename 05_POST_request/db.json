@@ -23,6 +23,54 @@
       "number": 5554443333,
       "name": "Tech BooksRus",
       "hours": "Thursday - Saturday 11am - 7pm"
+    },
+    {
+      "0": {},
+      "1": {},
+      "2": {},
+      "3": {},
+      "4": {},
+      "5": {},
+      "id": 4
+    },
+    {
+      "0": {},
+      "1": {},
+      "2": {},
+      "3": {},
+      "4": {},
+      "5": {},
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "name": "BooksRUs",
+      "location": "LaLaLand",
+      "number": "555-555-5555",
+      "address": "555 Shangri-La",
+      "hours": "Monday - Friday 9am - 6pm",
+      "id": 8
+    },
+    {
+      "name": "BooksRUs",
+      "location": "LaLaLand",
+      "number": "555-555-5555",
+      "address": "555 Shangri-La",
+      "hours": "Monday - Friday 9am - 6pm",
+      "id": 9
+    },
+    {
+      "name": "BooksRUs",
+      "location": "LaLaLand",
+      "number": "555-555-5555",
+      "address": "555 Shangri-La",
+      "hours": "Monday - Friday 9am - 6pm",
+      "id": 10
     }
   ],
   "books": [
@@ -135,6 +183,33 @@
       ],
       "inventory": 20,
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/41oYsXjLvZL._SY344_BO1,204,203,200_.jpg"
+    },
+    {
+      "title": "sdfs",
+      "author": "fsfds",
+      "price": 1,
+      "reviews": [],
+      "inventory": 10,
+      "imageUrl": "sfsdf",
+      "id": 8
+    },
+    {
+      "title": "hello",
+      "author": "me",
+      "price": 20,
+      "reviews": [],
+      "inventory": 1,
+      "imageUrl": "https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1xw:0.74975xh;center,top&resize=1200:*",
+      "id": 9
+    },
+    {
+      "title": "Designing Data-Intenseive Applications",
+      "author": "Martin Kleppmann",
+      "price": 23,
+      "reviews": [],
+      "inventory": 1,
+      "imageUrl": "https://m.media-amazon.com/images/I/51ZSpMl1-LL._SX379_BO1,204,203,200_.jpg",
+      "id": 10
     }
   ]
 }

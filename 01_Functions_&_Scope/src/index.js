@@ -81,17 +81,49 @@ const inventory = [
 
 // ✅ create an arrow function version of the formatPrice function
 
+// function formatPrice(price) {
+//   return "$" + Number.parseFloat(price).toFixed(2)
+
+// }
+
+const formatPrice = (price) => "$" + Number.parseFloat(price).toFixed(2)
+
 
 
 // ✅ create a blurb() function that accepts a book as an argument and logs a message in the following format:
 // 'Eloquent JavaScript: A Modern Introduction to Programming by Marjin Haverbeke is on sale for $10.00'
 
+const book1 = {
+  id: 1,
+    title: 'Eloquent JavaScript: A Modern Introduction to Programming',
+    author: 'Marjin Haverbeke',
+    price: 10.00,
+    reviews: [{userID: 1, content:'Good book, but not great for new coders'}],
+    inventory: 10,
+    imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51IKycqTPUL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg'
+}
+
+function blurb(bookObj) {
+  const price = formatPrice(bookObj.price)
+  console.log(`${bookObj.title} by ${bookObj.author} is on sale for ${price}`)
+}
+
+blurb(book1)
 
 
 // 💡 Difference between Block scope, Function scope, and Global scope
 
 // ✅ create a variable `highestPricedBook`
 
+function findHighestPricedBook(inventoryArr) {
+  let highestPricedBook = inventoryArr[0]
+  for (let bookObj in inventoryArr) {
+    if (highestPricedBook.price < bookObj.price) {
+      highestPricedBook = bookObj
+    }
+  }
+  return highestPricedBook
+}
 
 
 // ✅ create a function `findHighestPricedBook` that finds that book and returns it
@@ -104,20 +136,50 @@ const inventory = [
 // and logs a message explaining the name of the function, the argument passed and 
 // the return value 
 
+
+
 // 💡 Practice using callbacks for iteration
 
 
 
 // ✅ Create an array of the prices of all of the books
 
+// function getBookPrice(bookObj) {
+//   return bookObj.price
+// }
 
+// const bookPrices = inventory.map(getBookPrice)
 
-// ✅ Create an array of simplified book objects
+const bookPrices = inventory.map(bookObj => bookObj.price)
+
+console.log(bookPrices)
+
+// ✅ Create an array of simplified book objects (title, author, price)
+
+const simplifiedBooks = inventory.map(bookObj => {
+  return {
+    title: bookObj.title,
+    author: bookObj.author,
+    price: formatPrice(bookObj.price)
+  }
+})
+
+console.log(simplifiedBooks)
 
 
 
 // ✅ Create an array of strings from the inventory in the following format:
 // 'Eloquent JavaScript: A Modern Introduction to Programming by Marjin Haverbeke is on sale for $10.00'
 
+const stringifyBooks = inventory.map(bookObj => blurb(bookObj))
+console.log(stringifyBooks)
+
+
 
 // 💡 When do I use forEach vs map?
+
+function printBlurbs() {
+  inventory.forEach(book => console.log(blurb(book)))
+}
+
+printBlurbs()

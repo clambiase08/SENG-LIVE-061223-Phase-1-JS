@@ -217,13 +217,58 @@ bookForm.addEventListener('submit', (e) => {
     imageUrl: e.target.imageUrl.value
   }
   // pass the info as an argument to renderBook for display!
-  renderBook(book);
+  renderBook(book); //-> optimistic calling
   // 1. Add the ability to perist the book to the database when the form is submitted. When this works, we should still see the book that is added to the DOM on submission when we refresh the page.
+  const config = {
+    method : "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(book)
+  }
+
+  fetch('http://localhost:3000/books', config)
+  .then(res => res.json())
+  //.then(newBook => renderBook(newBook)) // -> pessimistic rendering
+  .catch(renderError)
 
   e.target.reset();
 })
 
 // 2. Hook up the new Store form so it that it works to add a new store to our database and also to the DOM (as an option within the select tag)
+
+function handleStoreSubmit(e) {
+  e.preventDefault()
+  const store = {
+    name: e.target.name.value,
+    location: e.target.location.value,
+    number: e.target.number.value,
+    address: e.target.address.value,
+    hours: e.target.hours.value
+  }
+  
+  fetch("http://localhost:3000/stores", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(store)
+  })
+  .then(res => {
+    if (res.ok) {
+      return res.json()
+    } else {
+      throw (response.statusText)
+    }
+  })
+  .then(newStore => addSelectOptionForStore(newStore))
+  .catch(renderError)
+  e.target.reset()
+}
+
+storeForm.addEventListener('submit', handleStoreSubmit)
+
+
 
 // we're filling in the storeForm with some data
 // for a new store programatically so we don't 
@@ -237,5 +282,11 @@ fillIn(storeForm, {
   hours: "Monday - Friday 9am - 6pm"
 })
 
-
+fillIn(bookForm, {
+  title: "Designing Data-Intenseive Applications",
+  author: "Martin Kleppmann",
+  price: 22.20,
+  imageUrl: 'https://m.media-amazon.com/images/I/51ZSpMl1-LL._SX379_BO1,204,203,200_.jpg',
+  inventory: 1
+})
 
